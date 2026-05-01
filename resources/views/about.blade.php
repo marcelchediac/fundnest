@@ -1,3 +1,4 @@
+<x-layout>
 <div class="about-page">
 
     <header class="about-hero">
@@ -14,12 +15,10 @@
         </p>
 
         <div class="hero-buttons">
-            <a href="/campaigns/create" class="btn primary"> Start a Campaign </a>
-            <a href="/" class="btn secondary"> Explore Camapigns </a>
+            <a href="/" class="btn secondary"> Explore Campaigns </a>
 </div>
 
     </header>
-
 
     <section class="mission-card">
         <h2>Our Mission</h2>
@@ -114,7 +113,6 @@
     </section>
 
 </div>
-
 <style>
 
     body {
@@ -540,3 +538,4 @@
 }
 
 </style>
+</x-layout>

@@ -27,10 +27,11 @@ Route::get('/login',[AuthController::class,'Loginpage'])->name("login");
 Route::post('/login',[AuthController::class,'Login'])->name("LoginAction");
 });
 
+Route::get('/campaigns/create', [CampaignController::class, 'create'])->name('campaign.create')->middleware(['auth','isUser']);
+Route::post('/campaigns/create', [CampaignController::class, 'store'])->name('campaign.store')->middleware(['auth','isUser']);
+
 Route::middleware('auth')->group(function(){
 Route::get("/logout",[AuthController::class ,'logoutPage'])->name("logout");
-Route::get('/campaigns/create', [CampaignController::class, 'create'])->name('campaign.create');
-Route::post('/campaigns/create', [CampaignController::class, 'store'])->name('campaign.store');
 Route::get('/campaigns/{campaign}/donate', [DonationController::class, 'create'] )->name('donations.create');
 Route::post('/campaigns/{campaign}/donate',  [DonationController::class, 'store'] )->name('donations.store');
 Route::get('/dashboard', [App\Http\Controllers\AuthController::class, 'dashboard'])->name('dashboard');
