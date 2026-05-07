@@ -46,11 +46,11 @@ public function documents()
 {
     return $this->hasMany(CampaignDocument::class);
 }
-public function calculateRiskLevel($campaign){
+public function calculateRiskLevel(){
     
-    $hasDocument = $campaign->documents()->exists();
-    $descriptionLength= strlen($campaign->description);
-    $goalAmount = $campaign->goal_amount;
+    $hasDocument = $this->documents()->exists();
+    $descriptionLength= strlen($this->description);
+    $goalAmount = $this->goal_amount;
 
     if(!$hasDocument){
         return 'High';

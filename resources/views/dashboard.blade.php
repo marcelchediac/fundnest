@@ -16,11 +16,18 @@
 <div class="document-alert">
     <strong> Admin requested documents for
     {{$campaign->title}}</strong>
+    <p>Please upload the following documents:</p>
+
+    <div class="doc-list">
+        @foreach(explode("\n", $campaign->requested_documents) as $doc)
+            <p>• {{ $doc }}</p>
+        @endforeach
+    </div>
+
         <p> Please upload supporting documents to continue approval.</p>
     <a href="{{route('campaign.documents.upload',$campaign)}}" class="upload-btn">
         Upload Now
 </a>
-
 </div> 
     @endif
     @endforeach 

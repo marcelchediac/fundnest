@@ -73,8 +73,13 @@ return view('admin.index', compact('campaigns','stats','status','filter'));
         return view('admin.index', compact('campaigns','stats','status'));
     }
 
-    public function request(Campaign $campaign){
+    public function request(Request $request,Campaign $campaign){
+        $request->validate([
+        'requested_documents' => 'required|string'
+    ]);
+
         $campaign->document_requested = true;
+        $campaign->requested_documents = $request->requested_documents;
         $campaign->save();
         return redirect()->back()->with("success","Document request sent successfully");
     }

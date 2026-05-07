@@ -127,7 +127,6 @@ phoneInput.addEventListener('input', () => {
 });
 </script>
 <style>
-
     .form-card {
     background-color: rgba(18, 18, 221, 0.78);
     padding: 30px;

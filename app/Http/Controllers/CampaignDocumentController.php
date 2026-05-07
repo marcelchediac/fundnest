@@ -16,7 +16,7 @@ class CampaignDocumentController extends Controller
 
     public function store(Request $request, Campaign $campaign){
         $request->validate([
-            'documents.*'=>'required|file|mimes: pdf,jpg,png|max:2048'
+            'documents.*'=>'required|file|mimes: pdf,jpg,png,webp|max:2048'
         ]);
 
         foreach($request->file('documents') as $file){

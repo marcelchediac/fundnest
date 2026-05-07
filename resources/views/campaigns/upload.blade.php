@@ -16,7 +16,7 @@
                 <label class="file-box" id="fileBox">
                     <input type="file" name="documents[]" id="fileInput" multiple required>
                     <span id="fileText">Choose documents</span>
-                    <small>PDF, JPG, PNG accepted</small>
+                    <small>PDF, JPG, PNG, Webp accepted</small>
                     <ul id="fileList"></ul>
                 </label>
 

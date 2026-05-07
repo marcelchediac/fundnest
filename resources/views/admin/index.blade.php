@@ -144,7 +144,26 @@
                             @if($campaign->documents->isEmpty())
                                 <form method="POST" action="{{route('admin.campaigns.requestDocuments',$campaign)}}">
                                     @csrf 
-                                    <button class="request"> Request </button>
+                                    <div class="request-wrapper">
+                                    <button type="button"
+                                        class="request"
+                                         onclick="showTextarea(this)">
+                                            Request
+                                            </button>
+
+                                            <div class="request-box">
+                                <textarea
+                                     name="requested_documents"
+                                    placeholder="Enter required documents..."
+                                            required>
+                                                </textarea>
+
+                                    <button type="submit" class="send-request">
+                                                Send Request
+                                            </button>
+                                                </div>
+
+                                                    </div>
                                     </form>
                              @endif
                         </div>
@@ -173,6 +192,16 @@ setTimeout(() => {
     });
     
 }, 3000);
+
+       function showTextarea(btn){
+    const box = btn.parentElement.querySelector('.request-box');
+
+    if(box.style.display === "none" || box.style.display === ""){
+        box.style.display = "flex";
+    } else {
+        box.style.display = "none";
+    }
+}
     </script> 
 
 <style>
@@ -187,6 +216,7 @@ setTimeout(() => {
     font-size:12px;
     text-align:center;
 }
+
 
 .view-doc-btn:hover{
     background:#2980b9;
@@ -422,7 +452,8 @@ p {
 .actions { 
     display:flex;
      gap:13px; 
-     justify-content:center;
+     flex-wrap:wrap;
+     align-items: flex-start;
       margin-top:10px;
      }
 
@@ -456,6 +487,37 @@ p {
      .actions .request:hover{
         background: #d97706;
      }
+
+     .request-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.request-box{
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+    width: 100%;
+
+}
+.request-box textarea{
+     width: 100%;
+    height: 100px;
+
+    padding: 10px;
+    box-sizing: border-box;
+
+    text-align: left;
+    direction: ltr;
+    unicode-bidi: plaintext;
+}
+
+.send-request{
+    margin-top: 10px;
+    width: fit-content;
+    background:#c0392b;
+}
 
 .empty-state {
      background:#1b1c2e; 
