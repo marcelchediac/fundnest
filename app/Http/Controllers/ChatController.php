@@ -10,6 +10,11 @@ class ChatController extends Controller
     public function chat(Request $request)
     {
      $userMessage = $request->message;
+     if (!$this->isCrowdfundingRelated($userMessage)) {
+    return response()->json([
+        'reply' => "This chatbot is only for FundNest crowdfunding-related questions. I can help you with campaigns, donations, payments, and the website features."
+    ]);
+}
      $cacheKey = 'chatbot_' . md5($userMessage);
 
       if (Cache::has($cacheKey)) {
@@ -21,7 +26,7 @@ class ChatController extends Controller
             'site_name' => 'FundNest',
             'description' => 'FundNest is a crowdfunding platform that allows users to create, donate, and manage campaigns.',
             'contact' => [
-                'emails' => ['chediacmarcel@gmail.com', 'jzaouk@gmail.com'],
+                'emails' => ['chediacmarcel@gmail.com', 'zaouk.zouzou@hotmail.com'],
                 'phones' => ['+96179322130', '+96171801560'],
                 'location' => 'Lebanon'
             ],
@@ -58,6 +63,9 @@ class ChatController extends Controller
                     'question'=>'when i create the campaign should i fill the form with video and photo?',
                     'answer'=>"if you want your case to be verify and done quickly you should at least put a photo or a video"
                 ],
+                [ 'question'=> 'is document needed when I uplaod a case or a campaign',
+                  'answer'=> "document are mendatory for a case to be verify by administrator for approval"
+                ],
                 [
                     'question'=>'Can I create several cases?',
                     "answer"=>"of course but make sure that this cases will take some time to be verify and can be rejected"
@@ -82,6 +90,7 @@ class ChatController extends Controller
         foreach ($websiteContext['faq'] as $faq) {
             $systemMessage .= "Q: {$faq['question']}\nA: {$faq['answer']}\n";
         }
+
 
 
         try {
@@ -109,4 +118,25 @@ class ChatController extends Controller
             return response()->json(['reply' => 'Error contacting OpenAI API'], 500);
         }
     }
+
+
+    private function isCrowdfundingRelated($message)
+{
+    $keywords = [
+        'donation', 'donate', 'campaign', 'fund', 'funding',
+        'goal', 'withdraw', 'payment', 'support',
+        'create campaign', 'fundnest', 'raise money',
+        'donor', 'charity','case'
+    ];
+
+    foreach ($keywords as $word) {
+        if (stripos($message, $word) !== false) {
+            return true;
+        }
+    }
+
+    return false;
 }
+
+}
+

@@ -32,13 +32,14 @@
                 <i class="bi bi-envelope-fill"></i>
                 <div>
                     <p>chediacmarcel@gmail.com</p>
-                    <p>jzaouk@gmail.com</p>
+                    <p>zaouk.zouzou@hotmail.com</p>
                 </div>
             </div>
             <div class="info-item">
                 <i class="bi bi-telephone-fill"></i>
                 <div>
                     <span>+961 79 322 130</span>
+                    <br>
                     <span>+961 71 801 560</span>
                 </div>
             </div>

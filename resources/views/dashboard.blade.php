@@ -12,7 +12,7 @@
 <body>
 
 @foreach($campaigns as $campaign)
-@if($campaign->document_requested && $campaign->documents->isEmpty())
+@if($campaign-> status == 'pending' && $campaign->document_requested && $campaign->documents->isEmpty())
 <div class="document-alert">
     <strong> Admin requested documents for
     {{$campaign->title}}</strong>
